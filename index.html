@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fastfood — Foo Landing Page</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(304.58deg, #f4ece1 57.1%, #fcfbf7 145.5%);
+        font-family: "Poppins", sans-serif;
+        padding: 20px;
+        min-height: 100vh;
+      }
+
+      /* ===== БЭМ-блок page ===== */
+      .page {
+        max-width: 1511px;
+        margin: 0 auto;
+      }
+
+      /* ===== ШАПКА (flex) ===== */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 60px;
+        padding: 20px 0;
+      }
+
+      .header__logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .header__logo-icon {
+        width: 32px;
+        height: 32px;
+        background: url(hat.png);
+        background-size: contain;
+      }
+
+      .header__logo-text {
+        font-weight: 600;
+        font-size: 32px;
+        color: #000;
+      }
+
+      /* ===== НАВИГАЦИЯ (flex) ===== */
+      .nav {
+        display: flex;
+        gap: 60px;
+        flex-wrap: wrap;
+      }
+
+      .nav__item {
+        background: none;
+        border: none;
+        font-family: "Poppins", sans-serif;
+        font-size: 22px;
+        font-weight: 400;
+        color: #000;
+        cursor: pointer;
+        transition: color 0.2s ease;
+      }
+
+      .nav__item:hover {
+        color: #ff7e00;
+      }
+
+      /* ===== ДЕЙСТВИЯ (поиск + корзина) ===== */
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .actions__search {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: none;
+        border: none;
+        font-family: "Poppins", sans-serif;
+        font-size: 22px;
+        cursor: pointer;
+        transition: color 0.2s ease;
+      }
+
+      .actions__search:hover {
+        color: #ff7e00;
+      }
+
+      .actions__search-icon {
+        width: 18px;
+        height: 18px;
+        border: 2px solid #909090;
+        border-radius: 50%;
+        position: relative;
+      }
+
+      .actions__search-icon::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 8px;
+        background: #909090;
+        bottom: -6px;
+        right: -4px;
+        transform: rotate(-45deg);
+      }
+
+      .cart {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .cart__icon {
+        width: 24px;
+        height: 24px;
+        background: url("Shopping cart.png") no-repeat center;
+        background-size: contain;
+        border: none;
+        cursor: pointer;
+      }
+
+      .cart__badge {
+        position: absolute;
+        width: 17px;
+        height: 17px;
+        right: -12px;
+        top: -8px;
+        background: #ec2633;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: 600;
+        color: #fff;
+      }
+
+      .divider {
+        width: 1px;
+        height: 30px;
+        background: rgba(148, 140, 140, 0.31);
+      }
+
+      /* ===== ОСНОВНОЙ КОНТЕНТ (flex) ===== */
+      .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 40px;
+      }
+
+      .content__left {
+        flex: 1;
+        min-width: 280px;
+      }
+
+      .content__right {
+        flex: 1;
+        min-width: 300px;
+        display: flex;
+        justify-content: center;
+      }
+
+      /* ===== ЗАГОЛОВКИ ===== */
+      .title {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      .title__fast {
+        font-weight: 700;
+        font-size: 125px;
+        letter-spacing: -0.035em;
+        color: #ff7e00;
+        line-height: 0.9;
+      }
+
+      .title__right {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .title__food,
+      .title__delivery {
+        font-weight: 700;
+        font-size: 52px;
+        color: #2f2f2f;
+        line-height: 1.1;
+      }
+
+      /* ===== ОПИСАНИЕ ===== */
+      .description {
+        font-size: 22px;
+        color: #909090;
+        margin-bottom: 40px;
+        max-width: 568px;
+      }
+
+      /* ===== КНОПКИ ===== */
+      .buttons {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        flex-wrap: wrap;
+        margin-bottom: 50px;
+      }
+
+      .buttons__order {
+        background: #2f2f2f;
+        border: none;
+        padding: 20px 40px;
+        border-radius: 84px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+
+      .buttons__order:hover {
+        background: #ff7e00;
+      }
+
+      .buttons__order-text {
+        font-weight: 600;
+        font-size: 20px;
+        color: #f4ece1;
+        background: none;
+        border: none;
+        font-family: "Poppins", sans-serif;
+        cursor: pointer;
+      }
+
+      .buttons__video {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        cursor: pointer;
+      }
+
+      .buttons__video-circle {
+        width: 57px;
+        height: 57px;
+        background: #fff8f0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease;
+      }
+
+      .buttons__video-circle:hover {
+        background: #ff7e00;
+      }
+
+      .buttons__video-circle::after {
+        content: "";
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 10px 0 10px 18px;
+        border-color: transparent transparent transparent #2f2f2f;
+      }
+
+      .buttons__video-circle:hover::after {
+        border-color: transparent transparent transparent #fff;
+      }
+
+      .buttons__video-text {
+        font-weight: 600;
+        font-size: 20px;
+        color: #2f2f2f;
+        background: none;
+        border: none;
+        font-family: "Poppins", sans-serif;
+        cursor: pointer;
+        transition: color 0.2s ease;
+      }
+
+      .buttons__video-text:hover {
+        color: #ff7e00;
+      }
+
+      /* ===== РЕЙТИНГ ===== */
+      .rating {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .rating__stars {
+        display: flex;
+        gap: 8px;
+      }
+
+      .rating__star {
+        width: 28px;
+        height: 28px;
+        background: #febb41;
+        clip-path: polygon(
+          50% 0%,
+          61% 35%,
+          98% 35%,
+          68% 57%,
+          79% 91%,
+          50% 70%,
+          21% 91%,
+          32% 57%,
+          2% 35%,
+          39% 35%
+        );
+        transition: transform 0.2s ease;
+      }
+
+      .rating__star:hover {
+        transform: scale(1.2);
+        background: #ff7e00;
+      }
+
+      .rating__text {
+        font-weight: 600;
+        font-size: 18px;
+        color: #2f2f2f;
+        background: none;
+        border: none;
+        font-family: "Poppins", sans-serif;
+        cursor: pointer;
+        transition: color 0.2s ease;
+        text-align: left;
+      }
+
+      .rating__text:hover {
+        color: #ff7e00;
+      }
+
+      /* ===== ИЗОБРАЖЕНИЕ ===== */
+      .image {
+        width: 100%;
+        max-width: 750px;
+        height: auto;
+        background: url(aaa.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        aspect-ratio: 750 / 712;
+        cursor: pointer;
+      }
+
+      /* ===== БРЕЙКПОИНТ 1: 1100px ===== */
+      @media (max-width: 1100px) {
+        .title__fast {
+          font-size: 90px;
+        }
+
+        .title__food,
+        .title__delivery {
+          font-size: 42px;
+        }
+
+        .description {
+          font-size: 18px;
+        }
+
+        .nav {
+          gap: 30px;
+        }
+
+        .nav__item {
+          font-size: 18px;
+        }
+
+        .actions__search {
+          font-size: 18px;
+        }
+      }
+
+      /* ===== БРЕЙКПОИНТ 2: 600px ===== */
+      @media (max-width: 600px) {
+        body {
+          padding: 15px;
+        }
+
+        /* Шапка в колонку */
+        .header {
+          flex-direction: column;
+          text-align: center;
+          gap: 15px;
+        }
+
+        /* Меню по центру */
+        .nav {
+          justify-content: center;
+          gap: 20px;
+        }
+
+        .nav__item {
+          font-size: 16px;
+        }
+
+        /* Скрываем разделитель */
+        .divider {
+          display: none;
+        }
+
+        /* Контент в колонку */
+        .content {
+          flex-direction: column;
+        }
+
+        .content__left {
+          text-align: center;
+        }
+
+        /* Заголовки в колонку */
+        .title {
+          flex-direction: column;
+          text-align: center;
+          gap: 10px;
+        }
+
+        .title__fast {
+          font-size: 60px;
+        }
+
+        .title__food,
+        .title__delivery {
+          font-size: 32px;
+        }
+
+        .description {
+          font-size: 16px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        /* Кнопки по центру */
+        .buttons {
+          justify-content: center;
+        }
+
+        /* Рейтинг по центру */
+        .rating {
+          justify-content: center;
+        }
+
+        .rating__text {
+          font-size: 14px;
+        }
+
+        .rating__star {
+          width: 22px;
+          height: 22px;
+        }
+
+        /* Убираем несущественный элемент */
+        .buttons__video-text {
+          display: none;
+        }
+
+        .cart__badge {
+          right: -8px;
+          top: -6px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- ШАПКА -->
+      <div class="header">
+        <div class="header__logo">
+          <div class="header__logo-icon"></div>
+          <div class="header__logo-text">Foo</div>
+        </div>
+
+        <div class="nav">
+          <button class="nav__item">Home</button>
+          <button class="nav__item">Menu</button>
+          <button class="nav__item">Contact</button>
+          <button class="nav__item">Shop</button>
+        </div>
+
+        <div class="actions">
+          <button class="actions__search">
+            <span class="actions__search-icon"></span>
+            Search
+          </button>
+          <div class="cart">
+            <button class="cart__icon" aria-label="Shopping cart"></button>
+            <div class="cart__badge">2</div>
+          </div>
+          <div class="divider"></div>
+        </div>
+      </div>
+
+      <!-- ОСНОВНОЙ КОНТЕНТ -->
+      <div class="content">
+        <div class="content__left">
+          <div class="title">
+            <div class="title__fast">Fast</div>
+            <div class="title__right">
+              <div class="title__food">Food</div>
+              <div class="title__delivery">Delivery</div>
+            </div>
+          </div>
+
+          <div class="description">
+            Sed ut perspiciatis unde omnis iste natus sit<br />
+            voluptatem accusantium doloremque laudantium
+          </div>
+
+          <div class="buttons">
+            <div class="buttons__order">
+              <button class="buttons__order-text">Order Now</button>
+            </div>
+            <div class="buttons__video">
+              <div class="buttons__video-circle"></div>
+              <button class="buttons__video-text">Watch Video</button>
+            </div>
+          </div>
+
+          <div class="rating">
+            <div class="rating__stars">
+              <div class="rating__star"></div>
+              <div class="rating__star"></div>
+              <div class="rating__star"></div>
+              <div class="rating__star"></div>
+              <div class="rating__star"></div>
+            </div>
+            <button class="rating__text">
+              5 star rating<br />based on 1788 reviews
+            </button>
+          </div>
+        </div>
+
+        <div class="content__right">
+          <div class="image" role="button" tabindex="0"></div>
+        </div>
+      </div>
+    </div>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </body>
+</html>
