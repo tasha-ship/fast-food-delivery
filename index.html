@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fastfood — Foo Landing Page</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(304.58deg, #f4ece1 57.1%, #fcfbf7 145.5%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: "Poppins", sans-serif;
+        padding: 40px 80px;
+      }
+
+      /* Контент без белого блока — просто ограничиваем ширину */
+      .container {
+        max-width: 1511px;
+        width: 100%;
+      }
+
+      /*ЛОГОТИП */
+      .logo-chef {
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        left: 87px;
+        top: 48px;
+        background: url(hat.png);
+        background-size: contain;
+      }
+
+      .foo-text-logo {
+        position: absolute;
+        left: 123px;
+        top: 46px;
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 139.8%;
+        color: #000000;
+      }
+
+      /*  НАВИГАЦИЯ  */
+      .nav-group {
+        position: absolute;
+        display: flex;
+        gap: 60px;
+        left: 533px;
+        top: 59px;
+        font-weight: 400;
+        font-size: 22px;
+        color: #000;
+      }
+      .nav-item {
+        cursor: pointer;
+        transition: color 0.2s ease;
+        background: none;
+        border: none;
+        font-family: "Poppins", sans-serif;
+        font-size: 22px;
+        font-weight: 400;
+        color: #000;
+        padding: 0;
+      }
+      .nav-item:hover {
+        color: #ff7e00;
+      }
+
+      .nav-search {
+        position: absolute;
+        left: 1204px;
+        top: 59px;
+        font-weight: 400;
+        font-size: 22px;
+        color: #000;
+        cursor: pointer;
+        transition: color 0.2s ease;
+        background: none;
+        border: none;
+        font-family: "Poppins", sans-serif;
+        padding: 0;
+      }
+      .nav-search:hover {
+        color: #ff7e00;
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 1173px;
+        top: 60px;
+        width: 18px;
+        height: 18px;
+        border: 2px solid #909090;
+        border-radius: 50%;
+        transition: border-color 0.2s ease;
+        pointer-events: none;
+      }
+      .nav-search:hover + .search-icon,
+      .search-icon:hover {
+        border-color: #ff7e00;
+      }
+      .search-icon::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 8px;
+        background: #909090;
+        bottom: -6px;
+        right: -4px;
+        transform: rotate(-45deg);
+        transition: background 0.2s ease;
+      }
+      .nav-search:hover + .search-icon::after,
+      .search-icon:hover::after {
+        background: #ff7e00;
+      }
+
+      /* корзина */
+      .cart-icon {
+        position: absolute;
+        left: 1391px;
+        top: 60px;
+        width: 24px;
+        height: 24px;
+        background: url("Shopping cart.png") no-repeat center;
+        background-size: contain;
+        border: none;
+        cursor: pointer;
+      }
+
+      .cart-icon:hover {
+        transform: scale(1.1);
+      }
+
+      .cart-badge {
+        position: absolute;
+        width: 17px;
+        height: 17px;
+        left: 1401px;
+        top: 45px;
+        background: #ec2633;
+        border-radius: 50%;
+        box-shadow: 0px 2px 23px 1px rgba(255, 51, 52, 0.72);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: 600;
+        color: #ffffff;
+        cursor: default;
+      }
+
+      .divider-vertical {
+        position: absolute;
+        width: 1px;
+        height: 30px;
+        left: 1374px;
+        top: 47px;
+        background: rgba(148, 140, 140, 0.31);
+        transform: rotate(90deg);
+        pointer-events: none;
+      }
+
+      /*  ОСНОВНОЙ КОНТЕНТ  */
+      .fast-title {
+        position: absolute;
+        width: 261px;
+        height: 119px;
+        left: 87px;
+        top: 242.94px;
+        font-weight: 700;
+        font-size: 125px;
+        line-height: 94.8%;
+        letter-spacing: -0.035em;
+        color: #ff7e00;
+        pointer-events: none;
+      }
+
+      .food-delivery {
+        position: absolute;
+        width: 221px;
+        left: 366px;
+        top: 252.94px;
+        font-weight: 700;
+        font-size: 52px;
+        line-height: 94.8%;
+        color: #2f2f2f;
+        pointer-events: none;
+      }
+
+      .description-text {
+        position: absolute;
+        width: 568px;
+        left: 93px;
+        top: 385.94px;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 138.8%;
+        color: #909090;
+        pointer-events: none;
+      }
+
+      /* кнопка Order Now */
+      .order-btn-bg {
+        position: absolute;
+        width: 188px;
+        height: 70px;
+        left: 93px;
+        top: 491.94px;
+        background: #2f2f2f;
+        box-shadow: 0px 20px 32px -8px rgba(0, 0, 0, 0.2);
+        border-radius: 84px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        border: none;
+      }
+      .order-btn-bg:hover {
+        background: #ff7e00;
+        transform: scale(1.02);
+        box-shadow: 0px 25px 35px -8px rgba(255, 126, 0, 0.3);
+      }
+
+      .order-btn-text {
+        position: absolute;
+        width: 107px;
+        height: 19px;
+        left: 133px;
+        top: 516.94px;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 94.8%;
+        color: #f4ece1;
+        cursor: pointer;
+        transition: color 0.2s ease;
+        background: none;
+        border: none;
+        font-family: "Poppins", sans-serif;
+        padding: 0;
+        z-index: 2;
+      }
+      .order-btn-bg:hover + .order-btn-text,
+      .order-btn-text:hover {
+        color: #ffffff;
+      }
+
+      /* кнопка видео */
+      .video-circle {
+        position: absolute;
+        width: 57px;
+        height: 57px;
+        left: 309px;
+        top: 496.94px;
+        background: #fff8f0;
+        box-shadow: 0px 20px 36px -16px rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        border: none;
+      }
+      .video-circle:hover {
+        background: #ff7e00;
+        transform: scale(1.1);
+        box-shadow: 0px 25px 40px -12px rgba(255, 126, 0, 0.4);
+      }
+      .video-circle::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 10px 0 10px 18px;
+        border-color: transparent transparent transparent #2f2f2f;
+        transition: border-color 0.2s ease;
+      }
+      .video-circle:hover::after {
+        border-color: transparent transparent transparent #ffffff;
+      }
+
+      .watch-video-text {
+        position: absolute;
+        width: 131px;
+        height: 19px;
+        left: 377px;
+        top: 516.94px;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 94.8%;
+        color: #2f2f2f;
+        cursor: pointer;
+        transition: color 0.2s ease;
+        background: none;
+        border: none;
+        font-family: "Poppins", sans-serif;
+        padding: 0;
+      }
+      .watch-video-text:hover {
+        color: #ff7e00;
+      }
+
+      /*  ЗВЁЗДЫ И ОТЗЫВЫ  */
+      .stars-group {
+        position: absolute;
+        left: 93px;
+        top: 630.94px;
+        display: flex;
+        gap: 8px;
+        cursor: pointer;
+      }
+      .star {
+        width: 28px;
+        height: 28px;
+        background: #febb41;
+        clip-path: polygon(
+          50% 0%,
+          61% 35%,
+          98% 35%,
+          68% 57%,
+          79% 91%,
+          50% 70%,
+          21% 91%,
+          32% 57%,
+          2% 35%,
+          39% 35%
+        );
+        transition: transform 0.2s ease;
+      }
+      .star:hover {
+        transform: scale(1.2);
+        background: #ff7e00;
+      }
+
+      .reviews-text {
+        position: absolute;
+        width: 250px;
+        left: 98px;
+        top: 669.94px;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 139.8%;
+        color: #2f2f2f;
+        cursor: pointer;
+        transition: color 0.2s ease;
+        background: none;
+        border: none;
+        font-family: "Poppins", sans-serif;
+        padding: 0;
+        text-align: left;
+      }
+      .reviews-text:hover {
+        color: #ff7e00;
+      }
+
+      /* правый большой рисунок */
+      .big-image {
+        position: absolute;
+        width: 750px;
+        height: 712px;
+        left: 746px;
+        top: 136px;
+        background: url(aaa.png);
+        background-size: contain;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      button,
+      [role="button"] {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- логотип -->
+      <div class="logo-chef"></div>
+      <div class="foo-text-logo">Foo</div>
+
+      <!-- навигация -->
+      <div class="nav-group">
+        <button class="nav-item">Home</button>
+        <button class="nav-item">Menu</button>
+        <button class="nav-item">Contact</button>
+        <button class="nav-item">Shop</button>
+      </div>
+      <button class="nav-search">Search</button>
+      <div class="search-icon" aria-hidden="true"></div>
+
+      <!-- корзина -->
+      <button class="cart-icon" aria-label="Shopping cart"></button>
+      <div class="cart-badge" aria-label="2 items in cart">2</div>
+      <div class="divider-vertical" aria-hidden="true"></div>
+
+      <!-- основной текст -->
+      <div class="fast-title" aria-hidden="true">Fast</div>
+      <div class="food-delivery" aria-hidden="true">Food<br />Delivery</div>
+      <div class="description-text" aria-hidden="true">
+        Sed ut perspiciatis unde omnis iste natus sit<br />
+        voluptatem accusantium doloremque laudantium
+      </div>
+
+      <!-- кнопка Order Now -->
+      <button class="order-btn-bg" aria-label="Order Now"></button>
+      <button class="order-btn-text">Order Now</button>
+
+      <!-- видео-кнопка -->
+      <button class="video-circle" aria-label="Watch video"></button>
+      <button class="watch-video-text">Watch Video</button>
+
+      <!-- звёзды и отзывы -->
+      <div
+        class="stars-group"
+        role="button"
+        tabindex="0"
+        aria-label="5 star rating"
+      >
+        <div class="star" aria-hidden="true"></div>
+        <div class="star" aria-hidden="true"></div>
+        <div class="star" aria-hidden="true"></div>
+        <div class="star" aria-hidden="true"></div>
+        <div class="star" aria-hidden="true"></div>
+      </div>
+      <button class="reviews-text">
+        5 star rating<br />based on 1788 reviews
+      </button>
+
+      <!-- большое изображение справа -->
+      <div
+        class="big-image"
+        role="button"
+        tabindex="0"
+        aria-label="View food special"
+      ></div>
+    </div>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </body>
+</html>
